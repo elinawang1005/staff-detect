@@ -1,0 +1,5 @@
+{
+    "name": "Music Score Lab",
+    "image": "mcr.microsoft.com/devcontainers/cpp:ubuntu-22.04",
+    "postCreateCommand": "sudo apt update && sudo apt install -y libopencv-dev cmake build-essential libboost-filesystem-dev libboost-system-dev libboost-program-options-dev poppler-utils imagemagick"
+}
