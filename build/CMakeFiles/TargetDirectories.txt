@@ -1,0 +1,3 @@
+/workspaces/staff-detect/build/CMakeFiles/stav.dir
+/workspaces/staff-detect/build/CMakeFiles/edit_cache.dir
+/workspaces/staff-detect/build/CMakeFiles/rebuild_cache.dir

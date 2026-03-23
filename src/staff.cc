@@ -541,10 +541,10 @@ StaffModel GetStaffModel(const cv::Mat &src, const int n_threads)
   cv::Mat img;
   src.copyTo(img);
   if (is_black_on_white(img))
-    cv::threshold(img, img, BINARY_THRESH_VAL, 255, CV_THRESH_BINARY_INV);
+    cv::threshold(img, img, BINARY_THRESH_VAL, 255, cv::THRESH_BINARY_INV);
   else
   {
-    cv::threshold(img, img, 255 - BINARY_THRESH_VAL, 255, CV_THRESH_BINARY);
+    cv::threshold(img, img, 255 - BINARY_THRESH_VAL, 255, cv::THRESH_BINARY);
   }
 
   StaffModel model;
@@ -714,7 +714,7 @@ void PrintStaffs(cv::Mat &dst, const Staffs &staffs,
   rotate(dst, dst, rotation);
   if (is_gray(dst))
   {
-    cv::cvtColor(dst, dst, CV_GRAY2BGR);
+    cv::cvtColor(dst, dst, cv::COLOR_GRAY2BGR);
   }
   for (auto s : staffs)
   {
@@ -740,10 +740,10 @@ void RemoveStaffs(cv::Mat &dst, const Staffs &staffs,
   assert(is_gray(dst));
   const bool blackOnWhite = is_black_on_white(dst);
   if (blackOnWhite)
-    cv::threshold(dst, dst, BINARY_THRESH_VAL, 255, CV_THRESH_BINARY_INV);
+    cv::threshold(dst, dst, BINARY_THRESH_VAL, 255, cv::THRESH_BINARY_INV);
   else
   {
-    cv::threshold(dst, dst, 255 - BINARY_THRESH_VAL, 255, CV_THRESH_BINARY);
+    cv::threshold(dst, dst, 255 - BINARY_THRESH_VAL, 255, cv::THRESH_BINARY);
   }
   const double rotation = RAD2DEG * (model.rot - CV_PI / 2);
   rotate(dst, dst, rotation);
@@ -764,7 +764,7 @@ void RemoveStaffs(cv::Mat &dst, const Staffs &staffs,
     }
   }
   if (blackOnWhite)
-    cv::threshold(dst, dst, BINARY_THRESH_VAL, 255, CV_THRESH_BINARY_INV);
+    cv::threshold(dst, dst, BINARY_THRESH_VAL, 255, cv::THRESH_BINARY_INV);
   raw_rotate(dst, dst, -rotation);
 }
 
@@ -780,10 +780,10 @@ void Realign(cv::Mat &dst, StaffModel &model)
 
   const bool blackOnWhite = is_black_on_white(dst);
   if (blackOnWhite)
-    cv::threshold(dst, dst, BINARY_THRESH_VAL, 255, CV_THRESH_BINARY_INV);
+    cv::threshold(dst, dst, BINARY_THRESH_VAL, 255, cv::THRESH_BINARY_INV);
   else
   {
-    cv::threshold(dst, dst, 255 - BINARY_THRESH_VAL, 255, CV_THRESH_BINARY);
+    cv::threshold(dst, dst, 255 - BINARY_THRESH_VAL, 255, cv::THRESH_BINARY);
   }
   const double rotation = RAD2DEG * (model.rot - CV_PI / 2);
   rotate(dst, dst, rotation);
@@ -810,7 +810,7 @@ void Realign(cv::Mat &dst, StaffModel &model)
   }
   dst = img;
   if (blackOnWhite)
-    cv::threshold(dst, dst, BINARY_THRESH_VAL, 255, CV_THRESH_BINARY_INV);
+    cv::threshold(dst, dst, BINARY_THRESH_VAL, 255, cv::THRESH_BINARY_INV);
   raw_rotate(dst, dst, -rotation);
   model.gradient = std::vector<double>(model.gradient.size(), 0.0);
 }

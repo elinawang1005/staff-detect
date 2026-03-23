@@ -24,7 +24,7 @@ void process_request(const Request &r)
 {
   for (auto fn : r.filenames)
   {
-    cv::Mat img = cv::imread(fn, CV_LOAD_IMAGE_GRAYSCALE);
+    cv::Mat img = cv::imread(fn, cv::IMREAD_GRAYSCALE);
     to_binary(img, img);
     auto model = GetStaffModel(img);
     auto staffs = FitStaffModel(model);
